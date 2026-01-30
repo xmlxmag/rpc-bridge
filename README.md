@@ -18,3 +18,10 @@ or original authors.
 - Internal service bridging
 - Extensible architecture
 - Designed for distributed environments
+
+## Acknowledgements
+
+This project is based on the open-source project
+Sekiro-RPC, which is licensed under the BSD License.
+
+Original copyright remains with the original authors.
