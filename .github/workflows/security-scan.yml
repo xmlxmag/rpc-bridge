@@ -9,26 +9,39 @@ on:
 jobs:
   security-scan:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
-      # ✅ 扫描工具使用 Java 11（不是你的项目 Java 版本）
-      - name: Set up JDK 11 for security scan
+      # 使用 Java 11（仅用于扫描工具）
+      - name: Set up JDK 11
         uses: actions/setup-java@v4
         with:
+          distribution: temurin
           java-version: '11'
-          distribution: 'temurin'
 
       - name: Verify Java
-        run: java -version
+        run: |
+          echo "JAVA_HOME=$JAVA_HOME"
+          java -version
 
-      - name: Run OWASP Dependency Check
-        uses: dependency-check/Dependency-Check_Action@main
-        with:
-          project: 'rpc-bridge'
-          path: '.'
-          format: 'HTML'
-          out: 'dependency-check-report'
-          args: >
-            --enableExperimental
+      # 下载 Dependency-Check CLI（稳定，不依赖 Action）
+      - name: Download OWASP Dependency-Check
+        run: |
+          curl -L https://github.com/jeremylong/DependencyCheck/releases/latest/download/dependency-check.zip -o dc.zip
+          unzip -q dc.zip
+
+      - name: Run Dependency-Check
+        run: |
+          ./dependency-check/bin/dependency-check.sh \
+            --project rpc-bridge \
+            --scan . \
+            --format HTML \
+            --out dependency-check-report \
             --failOnCVSS 11
+
+      - name: Upload scan report
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-check-report
+          path: dependency-check-report
