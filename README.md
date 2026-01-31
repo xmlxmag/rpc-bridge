@@ -6,7 +6,11 @@ internal service exposure, secure access, and distributed environments.
 ## About
 
 This project is built on top of an open-source foundation
-licensed under the BSD License.
+This project is a derivative work based on an open-source RPC framework.
+The upstream project is distributed under a permissive open-source license
+(e.g. BSD-style or Apache 2.0).
+
+Please refer to the original upstream repository for the authoritative license.
 
 It is independently developed and maintained,
 and is not affiliated with any upstream project
@@ -21,7 +25,7 @@ or original authors.
 
 ## Acknowledgements
 
-This project is based on the open-source project
-Sekiro-RPC, which is licensed under the BSD License.
+This project incorporates and derives from code originally published by the
+Sekiro-RPC project.
 
-Original copyright remains with the original authors.
+Original copyright remains with the respective authors.
