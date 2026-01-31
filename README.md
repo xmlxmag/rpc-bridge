@@ -5,16 +5,15 @@ internal service exposure, secure access, and distributed environments.
 
 ## About
 
-This project is built on top of an open-source foundation
-This project is a derivative work based on an open-source RPC framework.
-The upstream project is distributed under a permissive open-source license
-(e.g. BSD-style or Apache 2.0).
+This project is a derivative work built on top of an open-source RPC framework.
 
-Please refer to the original upstream repository for the authoritative license.
+The upstream project is distributed under a permissive open-source license,
+such as a BSD-style license or the Apache License, Version 2.0.
+Please refer to the original upstream repository for the authoritative license
+terms and notices.
 
-It is independently developed and maintained,
-and is not affiliated with any upstream project
-or original authors.
+This project is independently developed and maintained, and is not affiliated
+with any upstream project or original authors.
 
 ## Features
 
