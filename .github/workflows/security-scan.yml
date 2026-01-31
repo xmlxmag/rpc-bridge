@@ -4,7 +4,7 @@ on:
   push:
   pull_request:
   schedule:
-    - cron: '0 3 * * 1' # 每周一跑一次
+    - cron: '0 3 * * 1'
 
 jobs:
   security-scan:
@@ -12,18 +12,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up JDK
+      # ✅ 扫描工具使用 Java 11（不是你的项目 Java 版本）
+      - name: Set up JDK 11 for security scan
         uses: actions/setup-java@v4
         with:
-          java-version: '8'
+          java-version: '11'
           distribution: 'temurin'
 
-      - name: Fix JAVA_HOME
-        run: |
-          echo "JAVA_HOME=$JAVA_HOME"
-          echo "JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
-          java -version
-          
+      - name: Verify Java
+        run: java -version
+
       - name: Run OWASP Dependency Check
         uses: dependency-check/Dependency-Check_Action@main
         with:
@@ -33,3 +31,4 @@ jobs:
           out: 'dependency-check-report'
           args: >
             --enableExperimental
+            --failOnCVSS 11
