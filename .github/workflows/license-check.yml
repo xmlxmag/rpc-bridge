@@ -1,0 +1,20 @@
+name: License Check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  license-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+
+      - name: Check dependency licenses
+        run: mvn -B license:download-licenses
